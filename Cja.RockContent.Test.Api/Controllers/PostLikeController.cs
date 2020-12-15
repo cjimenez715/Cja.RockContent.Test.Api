@@ -28,12 +28,14 @@ namespace Cja.RockContent.Test.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task OnPostLike([FromBody] PostLikeUpdateDto postLike)
+        [HttpPut]
+        public async Task<ActionResult> OnPostLike([FromBody] PostLikeUpdateDto postLike)
         {
             var postLikeResult = _postLikeService.GetByIdAsync(postLike.Id);
 
             await _postLikeService.OnPostLike(postLike.Id, postLikeResult);
+
+            return Ok();
         }
     }
 }
